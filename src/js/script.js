@@ -74,6 +74,7 @@
       const menuContainer = document.querySelector((select.containerOf.menu));
 
       /* add element to menu */
+      menuContainer.appendChild(thisProduct.element);
 
 
     }
