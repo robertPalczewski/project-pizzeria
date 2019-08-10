@@ -64,12 +64,14 @@
       const thisProduct = this;
       /* generate HTML based on template */
       const generatedHTML = templates.menuProduct(thisProduct.data);
+      // console.log(generatedHTML);
 
       /* create element using utils.createElementFromHTML */
       thisProduct.element = utils.createDOMFromHTML(generatedHTML);
-      console.log(thisProduct.element);
+      // console.log(thisProduct.element);
 
       /*find menu container */
+      const menuContainer = document.querySelector((select.containerOf.menu));
 
       /* add element to menu */
 
