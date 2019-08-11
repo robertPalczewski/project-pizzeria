@@ -59,7 +59,6 @@
       thisProduct.data = data;
       thisProduct.renderInMenu();
       thisProduct.getElements();
-      console.log('new Product: ', thisProduct);
       thisProduct.initAccordion();
     }
 
@@ -79,18 +78,24 @@
       menuContainer.appendChild(thisProduct.element);
 
     }
+
     /* 8.5 */
-    getElements(){
+    getElements() {
       const thisProduct = this;
 
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      //console.log('accordionTrigger: ', thisProduct.accordionTrigger);
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      //console.log('form: ', thisProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      //console.log('formInputs: ', thisProduct.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      //console.log('cartButton: ', thisProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      //console.log('priceElem: ', thisProduct.priceElem);
     }
 
-    initAccordion(){
+    initAccordion() {
       const thisProduct = this;
 
       /*const buttonTest = document.getElementById('button-test');
@@ -140,7 +145,37 @@
         /* END: click event listener to trigger */
       });
     }
+
+    initOrderForm(){
+      const thisProduct = this;
+      console.log('6) start initOrderForm(): ');
+
+      thisProduct.form.addEventListener('submit', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+
+      for(let input of thisProduct.formInputs){
+        input.addEventListener('change', function(){
+          thisProduct.processOrder();
+        });
+      }
+
+      thisProduct.cartButton.addEventListener('click', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+
+    }
+
+    processOrder(){
+      const thisProduct = this;
+      console.log('6) start processOrder(): ');
+
+    }
   }
+
+
 
 
   const app = {
