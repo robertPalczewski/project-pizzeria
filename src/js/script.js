@@ -58,6 +58,7 @@
       thisProduct.id = id;
       thisProduct.data = data;
       thisProduct.renderInMenu();
+      thisProduct.getElements();
       console.log('new Product: ', thisProduct);
       thisProduct.initAccordion();
     }
@@ -66,7 +67,6 @@
       const thisProduct = this;
       /* generate HTML based on template */
       const generatedHTML = templates.menuProduct(thisProduct.data);
-      // console.log(generatedHTML);
 
       /* create element using utils.createElementFromHTML */
       thisProduct.element = utils.createDOMFromHTML(generatedHTML);
@@ -79,8 +79,18 @@
       menuContainer.appendChild(thisProduct.element);
 
     }
+    /* 8.5 */
+    getElements(){
+      const thisProduct = this;
 
-    initAccordion() {
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+    }
+
+    initAccordion(){
       const thisProduct = this;
 
       /*const buttonTest = document.getElementById('button-test');
@@ -90,10 +100,10 @@
       });*/
 
       /* find the clickable trigger (the element that should react to clicking) */
-      const accordionTriggerElements = thisProduct.element.querySelector(select.menuProduct.clickable);
-      console.log('0) accordionTriggerElement', accordionTriggerElements);
+      // const accordionTriggerElements = thisProduct.element.querySelector(select.menuProduct.clickable);
+      // console.log('0) accordionTriggerElement', accordionTriggerElements);
       /* START: click event listener to trigger */
-      accordionTriggerElements.addEventListener('click', function (event) {
+      thisProduct.accordionTrigger.addEventListener('click', function (event) {
         // for (let accordionTriggerElement of accordionTriggerElements) {
         console.log('1) START: click event listener to trigger, event listener');
 
