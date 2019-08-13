@@ -95,6 +95,8 @@
       //console.log('cartButton: ', thisProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       //console.log('priceElem: ', thisProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      console.log('thisProduct.imageWrapper: ', thisProduct.imageWrapper);
     }
 
     initAccordion() {
@@ -174,13 +176,20 @@
       const thisProduct = this;
       console.log('7) start processOrder(): ', thisProduct);
 
+      /* 8.6 removing active class from product images*/
+      const images = thisProduct.imageWrapper.querySelectorAll('img');
+      for(let image of images){
+        if (image.classList.length >= 2) {
+          image.classList.remove(classNames.menuProduct.imageVisible);
+        }
+      }
+
       /*const formData = utils.serializeFormToObject(thisProduct.form);
       console.log('formData', formData);*/
 
       /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
       const formData = utils.serializeFormToObject(thisProduct.form);
       console.log('8) formData: ', formData);
-
 
       /* set variable price to equal thisProduct.data.price */
       let price = thisProduct.data.price;
@@ -191,35 +200,63 @@
       /* START LOOP: for each paramId in thisProduct.data.params */
       for(let paramId in params) {
         console.log('10.1) paramId: ', paramId);
+
         /* save the element in thisProduct.data.params with key paramId as const param */
         const param = thisProduct.data.params[paramId];
         console.log('10.2) param: ', param);
 
         let options = param.options;
         console.log('10.3) options: ', options);
+
         /* START LOOP: for each optionId in param.options */
         for(let optionId in options) {
           console.log('11) optionId: ', optionId);
+
           /* save the element in param.options with key optionId as const option */
           const option = param.options[optionId];
           console.log('11.1) option: ', option);
           const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
           console.log('11.2) optionSelected: ', optionSelected);
+
           /* START IF: if option is selected and option is not default */
           if(optionSelected && !option.default) {
 
             /* add price of option to variable price */
             price += option.price;
             console.log('11.3) price: ', price);
+
             /* END IF: if option is selected and option is not default */
           }
+
           /* START ELSE IF: if option is not selected and option is default */
           else if(!optionSelected && option.default) {
+
             /* deduct price of option from price */
             price -= option.price;
             console.log('11.3-1) price: ', price);
+
             /* END ELSE IF: if option is not selected and option is default */
           }
+          /* 8.6 - Add images todo */
+
+          const imageClass = paramId + '-' + optionId;
+
+          if(optionSelected){
+            for(let image of images) {
+              if(image.classList.contains(imageClass)) {
+                image.classList.add(classNames.menuProduct.imageVisible);
+              }
+            }
+          } else {
+            for(let image of images) {
+              if(image.classList.contains(imageClass)) {
+                image.classList.remove(classNames.menuProduct.imageVisible);
+              }
+            }
+          }
+
+
+
           /* END LOOP: for each optionId in param.options */
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
