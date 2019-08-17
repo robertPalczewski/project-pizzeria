@@ -28,10 +28,14 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "dependencies": {},
+    "dependencies": {
+        "extend": "^3.0.2",
+        "mime": "^2.4.4",
+        "superagent": "^5.1.0"
+    },
     "devDependencies": {
         "autoprefixer-cli": "^1.0.0",
-        "browser-sync": "^2.26.3",
+        "browser-sync": "^2.26.7",
         "copyfiles": "^2.1.0",
         "eslint": "^5.14.1",
         "globstar": "^1.0.0",
