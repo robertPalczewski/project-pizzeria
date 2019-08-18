@@ -59,6 +59,7 @@
       thisProduct.data = data;
       thisProduct.renderInMenu();
       thisProduct.getElements();
+
       thisProduct.initOrderForm();
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
@@ -301,13 +302,17 @@
       const thisWidget = this;
 
       const newValue = parseInt(value);
-      this.announce();
+
       console.log('14) newValue: ', newValue);
 
       /* TODO: Add validation */
 
       thisWidget.value = newValue;
+
       console.log('14.1) thisWidget.value: ', thisWidget.value);
+      thisWidget.announce();
+      console.log('14.1-2) thisWidget.value: ', thisWidget.value);
+
       thisWidget.input.value = thisWidget.value;
       console.log('14.2) thisWidget.input.value: ', thisWidget.input.value);
     }
