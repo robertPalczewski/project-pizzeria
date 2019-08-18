@@ -247,7 +247,7 @@
 
             /* END ELSE IF: if option is not selected and option is default */
           }
-          /* 8.6 - Add images todo */
+          /* 8.6 - Add images */
 
           const imageClass = paramId + '-' + optionId;
 
@@ -285,6 +285,7 @@
       thisWidget.getElements(element);
       console.log('12) AmountWidget: ', thisWidget);
       console.log('13) constructor arguments: ', element);
+      thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initAction();
     }
@@ -305,13 +306,14 @@
 
       console.log('14) newValue: ', newValue);
 
-      /* TODO: Add validation */
+      /* Add validation */
 
-      thisWidget.value = newValue;
-
-      console.log('14.1) thisWidget.value: ', thisWidget.value);
-      thisWidget.announce();
-      console.log('14.1-2) thisWidget.value: ', thisWidget.value);
+      if(newValue !== thisWidget.value && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
+        thisWidget.value = newValue;
+        console.log('14.1) thisWidget.value: ', thisWidget.value);
+        thisWidget.announce();
+        console.log('14.1-2) thisWidget.value: ', thisWidget.value);
+      }
 
       thisWidget.input.value = thisWidget.value;
       console.log('14.2) thisWidget.input.value: ', thisWidget.input.value);
