@@ -153,3 +153,7 @@ fabric.properties
 
 # css style map
 css/style.css.map
+
+#temp
+.temp
+.temp/*
