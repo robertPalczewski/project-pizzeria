@@ -30,6 +30,7 @@
     "license": "ISC",
     "dependencies": {
         "extend": "^3.0.2",
+        "json-server": "^0.15.1",
         "mime": "^2.4.4",
         "superagent": "^5.1.0"
     },
