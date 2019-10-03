@@ -1,9 +1,6 @@
 import BaseWidget from './BaseWidget.js';
 import utils from '../utils.js';
-// eslint-disable-next-line no-unused-vars
 import {select, settings} from '../settings.js';
-
-
 
 class DatePicker extends BaseWidget {
 
