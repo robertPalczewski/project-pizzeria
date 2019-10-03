@@ -49,10 +49,10 @@ class Booking {
       fetch(urls.eventsCurrent),
       fetch(urls.eventsRepeat)
     ])
-      .then(function (allResponses) {
-        const bookingsResponse = allResponses[0];
-        const eventsCurrentResponse = allResponses[1];
-        const eventsRepeatResponse = allResponses[2];
+      .then(function (allResponse) {
+        const bookingsResponse = allResponse[0];
+        const eventsCurrentResponse = allResponse[1];
+        const eventsRepeatResponse = allResponse[2];
         return Promise.all([
           bookingsResponse.json(),
           eventsCurrentResponse.json(),
@@ -92,6 +92,7 @@ class Booking {
     }
 
     console.log('thisBooking.booked', thisBooking.booked);
+    thisBooking.hourPicker.value = settings.hours.open; // todo there must be a better way to solve this...
     thisBooking.updateDOM();
   }
 
@@ -116,7 +117,6 @@ class Booking {
 
   updateDOM() {
     const thisBooking = this;
-
     thisBooking.date = thisBooking.datePicker.value;
     console.log('thisBooking.datePicker.value', thisBooking.datePicker.value);
     console.log('thisBooking.hourPicker.value', thisBooking.hourPicker.value);
@@ -142,7 +142,7 @@ class Booking {
       if(
         !allAvailable
         &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) // > -1 added by mistake...
       ) {
         table.classList.add(classNames.booking.tableBooked);
       } else {
@@ -174,7 +174,6 @@ class Booking {
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
-
     thisBooking.dom.wrapper.addEventListener('updated', function() {
       thisBooking.updateDOM();
     });
