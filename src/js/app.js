@@ -120,6 +120,7 @@ const app = {
   },
 
   initBooking: function() {
+    // eslint-disable-next-line no-unused-vars
     const thisApp = this;
 
     const bookingContainer = document.querySelector(select.containerOf.booking);
