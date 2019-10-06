@@ -194,33 +194,30 @@ class Booking {
     }
 
     thisBooking.starters = [];
-    console.log('thisBooking.dom.breadStarter: ', thisBooking.dom.breadStarter);
-    console.log('thisBooking.dom.breadStarter.value: ', thisBooking.dom.breadStarter.value);
 
     thisBooking.dom.breadStarter.addEventListener('change', function () {
       if (thisBooking.dom.breadStarter.checked) {
         thisBooking.starters.push(thisBooking.dom.breadStarter.value.toString());
-        console.log('thisBooking.starters', thisBooking.starters);
       } else {
         thisBooking.starters = thisBooking.starters.filter(item => item !== thisBooking.dom.breadStarter.value);
-        console.log('thisBooking.starters', thisBooking.starters);
       }
     });
     thisBooking.dom.waterStarter.addEventListener('change', function () {
       if (thisBooking.dom.waterStarter.checked) {
         thisBooking.starters.push(thisBooking.dom.waterStarter.value.toString());
-        console.log('thisBooking.starters', thisBooking.starters);
       } else {
         thisBooking.starters = thisBooking.starters.filter(item => item !== thisBooking.dom.waterStarter.value);
-        console.log('thisBooking.starters', thisBooking.starters);
       }
     });
+
 
     thisBooking.dom.form.addEventListener('submit', function (event) {
       event.preventDefault();
       thisBooking.sendReservation();
     });
   }
+
+  // todo validation
 
   sendReservation() {
     const thisBooking = this;
@@ -235,8 +232,7 @@ class Booking {
       duration: thisBooking.hoursAmount.value,
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
-      waterStarter: thisBooking.dom.waterStarter.value,
-      breadStarter: thisBooking.dom.breadStarter.value
+      starters: thisBooking.starters.join(', ')
     };
 
     const options = {
