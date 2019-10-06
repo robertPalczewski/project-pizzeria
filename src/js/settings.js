@@ -61,7 +61,13 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
-    choosenTables: '.table.choosen'
+    choosenTables: '.floor-plan .table.choosen',
+    waterStarter: '[value="water"]',
+    breadStarter: '[value="bread"]',
+    phone: '[name="phone"]',
+    address: '[name="address"]',
+    form: '.booking-form',
+    formSubmit: '.booking-form [type="submit"]'
   },
   nav: {
     links: '.main-nav a',
